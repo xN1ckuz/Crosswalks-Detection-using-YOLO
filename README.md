@@ -11,11 +11,19 @@ In this phase we took the photos, at different times of the day (morning, aftern
 - center_x and center_y represent the central point of the selection rectangle.
 width and height represent the width and height of the rectangle.
 
+(imgLabel)
+
+We labeled two pedestrian crossings at a time, to avoid selecting too large a portion of the image.
+
+
+
 ## Object Detection
 For our project we decided to use YOLO (You Only Look Once) with PyTorch, in this case we used version 5. YOLO uses Daknet, an open source neural network framework written in C and CUDA that supports CPU and GPU computation.
 
 ## YOLO Model
-Regarding the pre-trained model, we decided to use YOLOv5m.pt with 300 epochs, we could not choose a better model due to the GPU RAM limitations of Google Colaboratory.
+Regarding the pre-trained model, we decided to use YOLOv5m.pt with 300 epochs, we could not choose a better model due to the GPU RAM limitations of Google Colaboratory. YOLOv5 is the version of YOLO that was chosen, not only for its effectiveness but above all for its speed, as well as for the possibility of choosing the pre-trained weight to use.
+
+(yolo_model)
 
 ## Bounding Boxes Merge
 A major challenge was to merge the various bounding boxes. For our problem, in the state of art, we could not find any algorithm already tested and working. For this reason, we have personally implemented an algorithm for bounding boxes merge in Python, using OpenCV.
