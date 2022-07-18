@@ -11,11 +11,9 @@ In this phase we took the photos, at different times of the day (morning, aftern
 - center_x and center_y represent the central point of the selection rectangle.
 width and height represent the width and height of the rectangle.
 
-(imgLabel)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/label.jpg)
 
 We labeled two pedestrian crossings at a time, to avoid selecting too large a portion of the image.
-
-
 
 ## Object Detection
 For our project we decided to use YOLO (You Only Look Once) with PyTorch, in this case we used version 5. YOLO uses Daknet, an open source neural network framework written in C and CUDA that supports CPU and GPU computation.
