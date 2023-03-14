@@ -1,5 +1,0 @@
-train: /content/gdrive/MyDrive/project_VeP/training_dataset/train/images
-val: /content/gdrive/MyDrive/project_VeP/test_dataset/test/images
-
-nc: 1
-names: ['crosswalk']
