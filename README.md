@@ -12,7 +12,7 @@ In this phase we took the photos, at different times of the day (morning, aftern
 - center_x and center_y represent the central point of the selection rectangle.
 - width and height represent the width and height of the rectangle.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/label.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/label.jpg)
 
 We labeled two pedestrian crossings at a time, to avoid selecting too large a portion of the image.
 
@@ -22,12 +22,12 @@ For our project we decided to use YOLO (You Only Look Once) with PyTorch, in thi
 ## YOLO Model
 Regarding the pre-trained model, we decided to use YOLOv5m.pt with 300 epochs, we could not choose a better model due to the GPU RAM limitations of Google Colaboratory. YOLOv5 is the version of YOLO that was chosen, not only for its effectiveness but above all for its speed, as well as for the possibility of choosing the pre-trained weight to use.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/yolo_model.png)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/yolo_model.png)
 
 ## Bounding Boxes Merge
 A major challenge was to merge the various bounding boxes. For our problem, in the state of art, we could not find any algorithm already tested and working. For this reason, we have personally implemented an algorithm for bounding boxes merge in Python, using OpenCV.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/merge.png)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/merge.png)
 
 We know that OpenCV, in order to construct a rectangle, uses the coordinates of the highest left vertex and the lowest right vertex expressed in pixels, while the YOLO labels provide us with the coordinates of the center, width and height of the single bounding box. In our algorithm, after transforming the coordinates from YOLO to OpenCV, we took the minimum x and y coordinates for the top left vertex, while the maximum x and y coordinates for the lower right vertex.
 
@@ -35,7 +35,7 @@ We know that OpenCV, in order to construct a rectangle, uses the coordinates of 
 
 The photos were taken personally, then we uploaded the images to ROBOFLOW to create the dataset. At this point, we carried out the augmentation step, as we can see the image below.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/augmentation.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/augmentation.jpg)
 
 As results we have 1046 images for training, 224 for validation, and 224 to calculate the test metrics. We reserved 75% of the images for training, 15% for validation and 15% for testing. We took an additional 202 photos which we used to calculate the inferences.
 
@@ -43,21 +43,21 @@ As results we have 1046 images for training, 224 for validation, and 224 to calc
 
 ## Qualitative Results
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/inference.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/inference.jpg)
 
 The results are in line with what was expected.
 
 ## Quantitative Results
 The final model we have taken into consideration is what is called best.pt, and is chosen by YOLO through these metrics, giving a greater weight to the mAP 0.5: 0.95, a lower weight to the mAP 0.5 and a zero weight to recall and precision. The data we get from the training are also automatically graphed as follows:
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/results.png)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/results.png)
 
 The results on the test data are:
 - Precision of 0.961;
 - Recall value of 0.937.
 
 F1 Score:
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/F1.png)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/F1.png)
 
 ## Intersection over Union
 As for the results achieved with IoU, we obtained a metric equal to 0.77.
@@ -68,13 +68,13 @@ When we did the first detection, we noticed some problems. First of all, some st
 For these reasons, we modified training dataset and parameters. In the second training we used yolov5m as the first run, but this time with 300 epochs. In the training dataset, we did a better augmentation (parameters are explained in dataset paragraph) , and then we added some examples of stop road markings, with empty label; in this way, CNN has learned to recognize stops correctly.
 In the image below, we can see on the left the detection obtained with the first model. On the right, the detection disappeared, as expected.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/stop.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/stop.jpg)
 
 In this image, instead, we can see that the second model performs better, as it detected a larger portion of the crosswalk.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/crosswalk.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/crosswalk.jpg)
 
 # Merge Results
 Last thing we did was to merge Yolo bounding boxes. This was necessary as we have labelled two crosswalks at a time; in this way the model performs better, but in the detection phase crosswalks are identified several times. As you can see from the figure below, we have achieved excellent results and we have also managed to save the maximum confidence.
 
-![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YoloV5/blob/main/readme_img/merge_result.jpg)
+![alt text](https://github.com/xN1ckuz/Crosswalks-Detection-using-YOLO/blob/main/resources/merge_result.jpg)
