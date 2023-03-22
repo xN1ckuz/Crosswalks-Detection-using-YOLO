@@ -7,7 +7,7 @@
 </p>
 
 <p align="center"> 
-We introduce a supervised method for detecting pedestrian crosswalks with DCNNs and Python. The project is based on YOLO framework, developed by <a href="https://github.com/ultralytics/ultralytics">Ultralytics</a>. The code is written on Google Colab, a platform to execute code on the Cloud, in the form of Jupyter Notebook. It provides also a GPU, needed for the project. The v1.2.0 of the detector uses YOLOv5, then we updated it to state-of-art model YOLOv8 in the version v2.0.0.
+We introduce a supervised method for detecting pedestrian crosswalks with DCNNs and Python. The project is based on YOLO framework, developed by <a href="https://github.com/ultralytics/ultralytics">Ultralytics</a>. The code is written on Google Colab, a platform to execute code on the Cloud, in the form of Jupyter Notebook. It provides also a GPU, needed for the project. The v1.2.0 of the detector uses YOLOv5, then we updated it to state-of-art model YOLOv8 in the version v1.4.0.
 </p>
 
 <h2 align="center"> Project Purpose</h2>
@@ -95,7 +95,7 @@ The final model we have taken into consideration is what is called <i>best.pt</i
 Now we describe the extra work we did on our project. The first training on v1.0.0 was almost perfect, but we wanted more. The first run we did was on 250 epochs on yolov5m pre-trained model. We wanted to use yolov5l, but we were limited on GPU RAM by Colab (for better GPU Colab Pro is needed).
 When we did the first detection, we noticed some problems. First of all, some stop road markings were identified as pedestrian crossings; secondly, not all pedestrian crossings were fully identified.
 For these reasons, we modified training dataset and parameters. In the version v1.2.0 we used yolov5m as the first run, but this time with 300 epochs. In the training dataset, we did a better augmentation (parameters are explained in dataset paragraph), and then we added some examples of stop road markings, with empty label; in this way, CNN has learned to recognize stops correctly.
-In the v2.0.0 we used the same dataset and parameters just described , this time with updated yolov8m weight.
+In the v1.4.0 we used the same dataset and parameters just described , this time with updated yolov8m weight.
 In the image below, we can see on the left the detection obtained with the first model. On the right, the detection disappeared, as expected.
 </p>
 <p align="center">
